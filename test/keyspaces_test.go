@@ -5,6 +5,7 @@ import (
 	"os/exec"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/hfgary/crossplane-keyspaces-test/pkg/awsclient"
 	"github.com/hfgary/crossplane-keyspaces-test/pkg/k8sclient"
@@ -22,22 +23,36 @@ func TestKeyspaceClaimCreation(t *testing.T) {
 		convey.Convey("When the keyspace claim is applied", func() {
 			applyCmd := exec.Command("kubectl", "apply", "-f", "-")
 			applyCmd.Stdin = strings.NewReader(string(keyspaceCR))
-			output, err := applyCmd.CombinedOutput()
-			convey.Printf("kubectl apply output: %s", output)
+			_, err := applyCmd.CombinedOutput()
 			convey.So(err, convey.ShouldBeNil)
 
 			convey.Convey("Then the related keyspace should exist", func() {
-				keyspaces, err := awsclient.ListKeyspaces()
-				convey.So(err, convey.ShouldBeNil)
+				var found bool
+				var err error
 
+				timeout := 600 * time.Second
 				keyspaceName := "gary_predev_test33"
-				found := false
-				for _, ks := range keyspaces {
-					if *ks.KeyspaceName == keyspaceName {
-						found = true
-						break
+				startTime := time.Now()
+
+				backoff := 1 * time.Second
+				for time.Since(startTime) < timeout {
+					keyspaces, err := awsclient.ListKeyspaces()
+					if err == nil {
+						for _, ks := range keyspaces {
+							if *ks.KeyspaceName == keyspaceName {
+								found = true
+								break
+							}
+						}
+						if found {
+							break
+						}
 					}
+					time.Sleep(backoff)
+					backoff *= 2 // Exponential backoff
 				}
+
+				convey.So(err, convey.ShouldBeNil)
 				convey.So(found, convey.ShouldBeTrue)
 			})
 		})
