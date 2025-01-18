@@ -48,6 +48,54 @@
           "store_path": "/nix/store/jfv85qbj4vb1dafcg6kncg4vrbq2bbxv-go-1.23.4"
         }
       }
+    },
+    "goconvey@1.8.1": {
+      "last_modified": "2024-12-23T21:10:33Z",
+      "resolved": "github:NixOS/nixpkgs/de1864217bfa9b5845f465e771e0ecb48b30e02d#goconvey",
+      "source": "devbox-search",
+      "version": "1.8.1-unstable-2024-03-06",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sdm2ps0x7w4h0rwx6s8px8qn009f5s8c-goconvey-1.8.1-unstable-2024-03-06",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sdm2ps0x7w4h0rwx6s8px8qn009f5s8c-goconvey-1.8.1-unstable-2024-03-06"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jdb6v33w005cx3bg1yvz6qhfcgckc7mq-goconvey-1.8.1-unstable-2024-03-06",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jdb6v33w005cx3bg1yvz6qhfcgckc7mq-goconvey-1.8.1-unstable-2024-03-06"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9cqa8kpbr646dlfhqd59ndrsy7l40xr0-goconvey-1.8.1-unstable-2024-03-06",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/9cqa8kpbr646dlfhqd59ndrsy7l40xr0-goconvey-1.8.1-unstable-2024-03-06"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bp6zj1jsxs8y8ml8x0fxmwlfi3zvr9j0-goconvey-1.8.1-unstable-2024-03-06",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/bp6zj1jsxs8y8ml8x0fxmwlfi3zvr9j0-goconvey-1.8.1-unstable-2024-03-06"
+        }
+      }
     }
   }
 }
